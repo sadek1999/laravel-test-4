@@ -14,6 +14,12 @@ class FeatureResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id'=>$this->id,
+            'name'=>$this->name,
+            'description'=>$this->description,
+            'user'=>new userResource($this->user),
+            'created_at'=>$this->created_at->formate('y-m-d H:i:s')
+        ];
     }
 }

@@ -1,4 +1,4 @@
-import { Config } from 'ziggy-js';
+import { Config } from "ziggy-js";
 
 export interface User {
     id: number;
@@ -7,8 +7,16 @@ export interface User {
     email_verified_at?: string;
 }
 
+export type TFeature = {
+    id: number;
+    name: string;
+    description: string;
+    user: User;
+    created_at: string;
+};
+
 export type PageProps<
-    T extends Record<string, unknown> = Record<string, unknown>,
+    T extends Record<string, unknown> = Record<string, unknown>
 > = T & {
     auth: {
         user: User;
