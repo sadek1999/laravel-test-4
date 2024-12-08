@@ -7,6 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class FeatureResource extends JsonResource
 {
+
+    public static $wrap=false;
     /**
      * Transform the resource into an array.
      *
@@ -19,7 +21,7 @@ class FeatureResource extends JsonResource
             'name'=>$this->name,
             'description'=>$this->description,
             'user'=>new userResource($this->user),
-            'created_at'=>$this->created_at->formate('y-m-d H:i:s')
+            'created_at'=>$this->created_at->format('y-m-d H:i:s')
         ];
     }
 }
