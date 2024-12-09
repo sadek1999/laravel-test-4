@@ -7,6 +7,26 @@ export interface User {
     email_verified_at?: string;
 }
 
+export type TPaginateData<T>={
+    data:T[];
+    links:Record<string,string |null>,
+    meta:{
+        current_page:number,
+        from:number,
+        last_page:number,
+        links:Array<{
+            url:string|null,
+            label:string,
+            active:boolean,
+        }>;
+        Path:string,
+        per_page:number,
+        to:number,
+        total:number,
+
+    }
+}
+
 export type TFeature = {
     id: number;
     name: string;

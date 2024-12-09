@@ -1,10 +1,11 @@
 // import Authenticated from '@/Layouts/AuthenticatedLayout';
+import FeatureItem from "@/Components/FeatureItem";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { TFeature } from "@/types";
+import { TFeature, TPaginateData } from "@/types";
 import { Head } from "@inertiajs/react";
 
 
-const index = ({ features }: { features: TFeature[] }) => {
+const index = ({ features }: { features: TPaginateData<TFeature> }) => {
     console.log(features)
     return (
         <AuthenticatedLayout
@@ -16,6 +17,11 @@ const index = ({ features }: { features: TFeature[] }) => {
         >
             <Head title="Feature" />
 
+           {
+            features?.data.map((feature:TFeature)=>(
+                <FeatureItem feature={feature} key={feature.id}></FeatureItem>
+            ))
+           }
 
         </AuthenticatedLayout>
     );
