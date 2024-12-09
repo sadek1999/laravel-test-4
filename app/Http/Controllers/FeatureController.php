@@ -68,7 +68,7 @@ class FeatureController extends Controller
     public function edit(Feature $feature)
     {
         return Inertia::render('Feature/edit',[
-            $feature=>New FeatureResource($feature)
+            'feature'=>New FeatureResource($feature)
         ]);
     }
 
@@ -89,7 +89,9 @@ class FeatureController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Feature $feature)
+
     {
+
         $feature->delete();
         return to_route('feature.index')->with('success','successfully dele the feature');
     }

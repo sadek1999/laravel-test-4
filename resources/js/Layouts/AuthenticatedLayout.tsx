@@ -18,7 +18,7 @@ export default function Authenticated({
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-            <Navbar></Navbar>
+            <Navbar user={user}></Navbar>
             {header && (
                 <header className="bg-white shadow dark:bg-gray-800">
                     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
