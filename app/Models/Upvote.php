@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Upvote extends Model
 {
        use HasFactory;
+
+       public $timestamps=false;
        protected $fillable=['upvote','user_id','feature_id'];
         public function feature()
         {

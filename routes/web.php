@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UpvoteController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -11,6 +12,8 @@ use Inertia\Inertia;
 
 
 Route::redirect('/', '/dashboard');
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -23,6 +26,9 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::resource('feature', FeatureController::class);
+
+    Route::post('feature/{feature}/upvote',[UpvoteController::class,'store'])->name('upvote.store');
+    Route::delete("upvote/{feature}",[UpvoteController::class,'destroy'])->name('upvote.delete');
 });
 
 

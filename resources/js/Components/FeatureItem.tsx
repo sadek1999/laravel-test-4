@@ -16,7 +16,7 @@ const FeatureItem = ({feature}:{feature:TFeature}) => {
 
       <div className='p-6 text-gray-900 dark:text-gray-100 flex gap-8'>
        <div>
-        <UpvoteDownvote></UpvoteDownvote>
+        <UpvoteDownvote feature={feature}></UpvoteDownvote>
        </div>
        <div className='flex-1'>
          <h1 className='text-2xl '>
