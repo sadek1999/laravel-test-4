@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\PermissionEnum;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\ProfileController;
@@ -26,13 +27,17 @@ Route::middleware('auth')->group(function () {
         })->name('dashboard');
     });
 
-    Route::resource('feature', FeatureController::class);
+    Route::resource('feature', FeatureController::class)->middleware('can:'.PermissionEnum::ManageFeature->value);
+    Route::get('feature',[FeatureController::class ,'index'])->name('feature.index');
 
-    Route::post('feature/{feature}/upvote',[UpvoteController::class,'store'])->name('upvote.store');
-    Route::delete("upvote/{feature}",[UpvoteController::class,'destroy'])->name('upvote.delete');
+    Route::get('feature/{feature}',[FeatureController::class,'show'])->name('feature.show');
 
-    Route::post('/feature/{feature}/comment',[CommentController::class,'store'])->name('comment.store');
-    Route::delete('comment/{feature}',[CommentController::class,'destroy'])->name('comment.destroy');
+
+    Route::post('feature/{feature}/upvote', [UpvoteController::class, 'store'])->name('upvote.store');
+    Route::delete("upvote/{feature}", [UpvoteController::class, 'destroy'])->name('upvote.delete');
+
+    Route::post('/feature/{feature}/comment', [CommentController::class, 'store'])->name('comment.store')->middleware('can:'.PermissionEnum::ManageComment);
+    Route::delete('comment/{feature}', [CommentController::class, 'destroy'])->name('comment.destroy')->middleware('can:'.PermissionEnum::ManageComment);
 });
 
 

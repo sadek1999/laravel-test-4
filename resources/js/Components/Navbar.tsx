@@ -4,9 +4,9 @@ import NavLink from "./NavLink";
 import ApplicationLogo from "./ApplicationLogo";
 import Dropdown from "./Dropdown";
 import ResponsiveNavLink from "./ResponsiveNavLink";
-import { User } from "@/types";
+import { TUser } from "@/types";
 
-const Navbar = ({user}:{user:User}) => {
+const Navbar = ({ user }: { user: TUser }) => {
     // const user = usePage().props.auth.user;
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
