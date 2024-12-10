@@ -6,6 +6,7 @@ use App\Http\Resources\FeatureResource;
 use App\Models\Feature;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 
@@ -17,7 +18,22 @@ class FeatureController extends Controller
      */
     public function index()
     {
-        $data=Feature::latest()->paginate();
+        $currentUserId=Auth::id();
+        $data=Feature::latest()
+        ->withCount(['upvote as upvote_count' => function ($query) {
+            $query->select(DB::raw('SUM(CASE WHEN upvote = 1 THEN 1 ELSE -1 END)'));
+        }])
+        ->withExists([
+            'upvote as user_has_upvoted' => function ($query) use ($currentUserId) {
+                $query->where('user_id', $currentUserId)
+                    ->where('upvote', 1);
+            },
+            'upvote as user_has_downvoted' => function ($query) use ($currentUserId) {
+                $query->where('user_id', $currentUserId)
+                    ->where('upvote', 0);
+            }
+        ])
+                 ->paginate();
 
 
         return Inertia::render('Feature/index'

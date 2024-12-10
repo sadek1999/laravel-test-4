@@ -2,9 +2,12 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { TFeature } from "@/types";
 import React from "react";
 import { Head } from "@inertiajs/react";
+
+import NewCommentForm from "@/Components/NewCommentForm";
 import UpvoteDownvote from "@/Components/UpvoteDownvote";
 
 const show = ({ feature }: { feature: TFeature }) => {
+    console.log(feature)
     return (
         <AuthenticatedLayout
             header={
@@ -17,17 +20,15 @@ const show = ({ feature }: { feature: TFeature }) => {
             <div className="mb-4 overflow-hidden bg-white shadow-sm sm:rounded-lg dark:bg-gray-800">
                 <div className="p-6 text-gray-900 dark:text-gray-100 flex gap-8">
                     <div>
-                        <UpvoteDownvote></UpvoteDownvote>
+                        <UpvoteDownvote feature={feature}></UpvoteDownvote>
                     </div>
                     <div className="flex-1">
                         <h1 className="text-2xl m-2 font-bold ">
-
-                                {feature.name}
-
+                            {feature.name}
                         </h1>
                         <p className="py-3">{feature.description}</p>
 
-
+                        <NewCommentForm feature={feature}></NewCommentForm>
                     </div>
                 </div>
             </div>

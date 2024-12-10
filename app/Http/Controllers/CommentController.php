@@ -13,10 +13,11 @@ class CommentController extends Controller
     public function store(Request $request ,Feature $feature)
     {
         $validateComment=$request->validate([
-            'comment'=>'string'|'required'
+            'comment'=>'string|required'
         ]);
         $validateComment["user_id"]=Auth::id();
         $validateComment['feature_id']=$feature->id;
+        // dd($validateComment);
         Comment::create($validateComment);
         return to_route('feature.show',$feature);
 

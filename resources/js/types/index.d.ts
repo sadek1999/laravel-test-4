@@ -33,6 +33,9 @@ export type TFeature = {
     description: string;
     user: User;
     created_at: string;
+    upvote_count:number;
+    user_has_upvoted:boolean;
+    user_has_downvoted:boolean;
 };
 
 export type PageProps<
