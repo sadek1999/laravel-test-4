@@ -1,8 +1,15 @@
 import React from "react";
 import Dropdown from "./Dropdown";
 import { TFeature } from "@/types";
+import { usePage } from "@inertiajs/react";
+import { can } from "@/helper";
 
 const FeatureActionDropdown = ({feature}:{feature:TFeature}) => {
+    const user=usePage().props.auth.user;
+    if(!can(user,'manageFeature'))
+    {
+        return;
+    }
 
     return (
         <div>

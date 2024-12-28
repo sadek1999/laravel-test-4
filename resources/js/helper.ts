@@ -2,10 +2,10 @@
 import { TUser } from "./types";
 
 export function can(user: TUser, permission: string): boolean {
-    return user.permissions.includes(permission);
+    return user.permission.includes(permission);
 }
 
 export function hasRole(user:TUser,role:string):boolean{
-    return user.roles.includes(role)
+    return user.role.includes(role)
 }
 

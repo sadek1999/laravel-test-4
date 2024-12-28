@@ -5,8 +5,8 @@ export type TUser = {
     name: string;
     email: string;
     email_verified_at?: string;
-    permissions: string[];
-    roles: string[];
+    permission: string[];
+    role: string[];
 };
 
 export type TPaginateData<T> = {
